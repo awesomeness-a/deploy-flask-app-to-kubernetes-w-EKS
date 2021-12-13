@@ -3,9 +3,10 @@ FROM python:stretch
 COPY . /app
 WORKDIR /app
 
-ENV FLASK_APP=main.python
-ENV FLASK_RUN_HOST=0.0.0.0
-
+RUN pip install --upgrade pip
+RUN pip install flask
 RUN pip install -r requirements.txt
-EXPOSE 5000
+
+EXPOSE 8080
+
 ENTRYPOINT ["gunicorn", "-b", ":8080", "main:APP"]
