@@ -18,7 +18,6 @@ phases:
       - chmod +x ./kubectl ./aws-iam-authenticator
       - echo `kubectl version`
       - export PATH=$PWD/:$PATH
-      - python -m pip install --upgrade pip
       - apt-get update && apt-get -y install jq  && pip install --upgrade awscli
   pre_build:
       commands:
@@ -26,9 +25,9 @@ phases:
         - sed -i 's@CONTAINER_IMAGE@'"$REPOSITORY_URI:$TAG"'@' simple_jwt_api.yml
         - $(aws ecr get-login --no-include-email)
         - export KUBECONFIG=$HOME/.kube/config
-        - python -m pip install --upgrade pip
+        - pip3 install --upgrade pip
         - pip3 install -r requirements.txt
-        - python -m pytest test_main.py
+        - pytest test_main.py
   build:
     commands:
       - docker build --tag $REPOSITORY_URI:$TAG .
@@ -44,6 +43,8 @@ phases:
       - aws eks update-kubeconfig --name $EKS_CLUSTER_NAME --role-arn $EKS_KUBECTL_ROLE_ARN
       - kubectl apply -f simple_jwt_api.yml 
       - printf '[{"name":"simple_jwt_api","imageUri":"%s"}]' $REPOSITORY_URI:$TAG > build.json
+      - pwd
+      - ls
 artifacts:
   files: build.json
 
