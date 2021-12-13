@@ -6,6 +6,10 @@ data:
   mapRoles: |
     - groups:
       - system:masters
+      rolearn: arn:aws:iam::372385315342:role/flaskTriviaDeployment
+      username: build
+    - groups:
+      - system:masters
       rolearn: arn:aws:iam::644752792305:role/UdacityFlaskDeployCBKubectlRole
       username: build      
     - groups:
@@ -23,3 +27,4 @@ metadata:
   resourceVersion: "5992"
   selfLink: /api/v1/namespaces/kube-system/configmaps/aws-auth
   uid: 5bf363cb-504c-4289-93ce-74257aff0de4
+  
