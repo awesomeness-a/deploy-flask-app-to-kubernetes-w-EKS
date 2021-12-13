@@ -3,7 +3,9 @@ FROM python:stretch
 COPY . /app
 WORKDIR /app
 
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+ENV FLASK_APP=main.python
+ENV FLASK_RUN_HOST=0.0.0.0
 
+RUN pip install -r requirements.txt
+EXPOSE 5000
 ENTRYPOINT ["gunicorn", "-b", ":8080", "main:APP"]
