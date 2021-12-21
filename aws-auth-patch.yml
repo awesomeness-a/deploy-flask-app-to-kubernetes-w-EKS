@@ -6,7 +6,7 @@ data:
   mapRoles: |
     - groups:
       - system:masters
-      rolearn: arn:aws:iam::372385315342:role/flaskTriviaDeployment
+      rolearn: arn:aws:iam::372385315342:role/FlaskDeployment
       username: build
     - groups:
       - system:masters
