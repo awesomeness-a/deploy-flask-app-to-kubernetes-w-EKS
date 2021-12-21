@@ -55,7 +55,7 @@ Parameters:
 
   KubectlRoleName:
     Type: String
-    Default: flaskTriviaDeployment
+    Default: FlaskDeployment
     Description: IAM role used by kubectl to interact with EKS cluster
     MinLength: 3
     MaxLength: 100
